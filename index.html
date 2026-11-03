@@ -58,13 +58,13 @@ footer{text-align:center;color:#71839d;font-size:12px;margin-top:35px}
 </div>
 <script>
 const starter = [
- {name:"Hypixel",ip:"hypixel.net",players:18420,demo:true},
+ {name:"Hypixel",ip:"mc.hypixel.net",players:18420,demo:true},
  {name:"GommeHD",ip:"GommeHD.net",players:3260,demo:true},
  {name:"Donut SMP",ip:"donutsmp.net",players:2180,demo:true}
 ];
 let servers;
 try { servers=JSON.parse(localStorage.getItem("serverRankingServers")) || starter; } catch { servers=starter; }
-servers = servers.map(s => ({...s, players: 0, demo: false, status: "loading"}));
+servers = servers.map(s => ({...s, ip: s.name.trim().toLowerCase()==="hypixel" ? "mc.hypixel.net" : s.ip, players: 0, demo: false, status: "loading"}));
 let descending=true;
 let refreshing=false;
 const esc = s => String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
